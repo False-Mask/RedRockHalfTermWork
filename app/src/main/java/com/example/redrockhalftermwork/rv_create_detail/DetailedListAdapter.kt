@@ -1,6 +1,7 @@
 package com.example.redrockhalftermwork.rv_create_detail
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.redrockhalftermwork.R
@@ -33,9 +34,33 @@ class DetailedListAdapter(var dataList:Tasks): RecyclerView.Adapter<DetailedList
     }
 
     interface Listener{
-        fun onSetDateClicked()
-        fun onSetTimeClicked()
-        fun onSetNameClicked()
+        fun onSetDateClicked(
+            it: View,
+            position1: Int,
+            tasks: Tasks
+        )
+        fun onSetTimeClicked(
+            it: View,
+            position1: Int,
+            tasks: Tasks
+        )
+        fun onSetNameClicked(
+            it: View,
+            position1: Int,
+            tasks: Tasks
+        )
+        fun onItemClicked(
+            it: View,
+            position1: Int,
+            tasks: Tasks
+        )
+        fun onStarClicked(
+            it: View,
+            position1: Int,
+            tasks: Tasks
+        )
+
+        fun onDeleteClicked(it: View,position1: Int,tasks: Tasks)
     }
 
 }

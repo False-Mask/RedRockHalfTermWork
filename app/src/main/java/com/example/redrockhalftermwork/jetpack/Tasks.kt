@@ -1,18 +1,18 @@
 package com.example.redrockhalftermwork.jetpack
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import java.io.Serializable
 
 @Entity(tableName = "tasksTable")
-data class Tasks(
-    var name:String = "",
+data class Tasks(var name:String = "",
     var list:MutableList<Task> = mutableListOf()
 ):Serializable{
-    @PrimaryKey(autoGenerate = true)
-    var id:Int = 0
-
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "id",typeAffinity = ColumnInfo.INTEGER)
+    var id:Long = 0
 
     data class Task(
         //创建时间
@@ -24,4 +24,5 @@ data class Tasks(
         //时间
         var time:String  = ""
     ):Serializable
+
 }

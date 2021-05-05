@@ -9,7 +9,7 @@ import androidx.room.TypeConverters
 private const val TASKS_DATABASE_NAME = "Tasks_Data.db"
 
 @TypeConverters(MutiTaskConverter::class)
-@Database(version = 1, entities = [Tasks::class],exportSchema = false)
+@Database(version = 5, entities = [Tasks::class])
 abstract class MyDataBase : RoomDatabase(){
 
     abstract fun tasksDao():TasksDao
@@ -23,6 +23,7 @@ abstract class MyDataBase : RoomDatabase(){
             }
             return Room.databaseBuilder(context.applicationContext,
                 MyDataBase::class.java, TASKS_DATABASE_NAME)
+                .fallbackToDestructiveMigration()
                 .build().apply {
                     instance=this
                 }

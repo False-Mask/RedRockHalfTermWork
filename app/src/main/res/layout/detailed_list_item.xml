@@ -1,98 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_change_visibility"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:padding="5dp"
-        android:layout_marginTop="3dp"
-        app:cardCornerRadius="5dp"
         android:layout_marginStart="9dp"
-        android:layout_marginEnd="9dp">
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="9dp"
+        android:padding="5dp"
+        app:cardCornerRadius="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground">
             <TextView
-                android:text="序号"
                 android:id="@+id/rv_detailed_position"
-                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="16sp"
-                android:textColor="@color/Dark" />
+                android:gravity="center"
+                android:text="序号"
+                android:textColor="@color/Dark"
+                android:textSize="16sp" />
+
             <TextView
-                android:text="名称"
                 android:id="@+id/rv_detailed_content"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="6"
-                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:text="名称"
                 android:textColor="@color/Dark"
-                android:gravity="center_vertical" />
+                android:textSize="16sp" />
+
             <ImageView
                 android:id="@+id/rv_detailed_image"
-                android:src="@drawable/ic_baseline_star_border_24"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:src="@drawable/ic_baseline_star_border_24" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="9dp"
         android:layout_marginEnd="9dp"
-        android:background="@color/Dark"/>
+        android:background="@color/Dark" />
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/hided_view"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginEnd="9dp"
         android:layout_marginStart="9dp"
-        app:cardCornerRadius="5dp"
-        android:visibility="visible">
+        android:layout_marginEnd="9dp"
+        android:visibility="gone"
+        app:cardCornerRadius="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3">
+
                 <TextView
                     android:id="@+id/set_date"
-                    android:gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="截止日期"
-                    android:drawableLeft="@drawable/ic_baseline_date_range_24"
                     android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"/>
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_baseline_date_range_24"
+                    android:gravity="center_vertical"
+                    android:text="截止日期" />
+
                 <TextView
                     android:id="@+id/set_time"
-                    android:gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="提醒时间"
-                    android:drawableLeft="@drawable/ic_baseline_alarm_24"
                     android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"/>
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_baseline_alarm_24"
+                    android:gravity="center_vertical"
+                    android:text="提醒时间" />
+
                 <TextView
                     android:id="@+id/set_name"
-                    android:gravity="center_vertical"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="修改名称"
-                    android:drawableLeft="@drawable/ic_baseline_settings_24"
                     android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"/>
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_baseline_settings_24"
+                    android:gravity="center_vertical"
+                    android:text="修改名称" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -100,19 +115,27 @@
 
                 <TextView
                     android:id="@+id/date"
-                    android:gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="日期" />
+
+                <ImageButton
+                    android:id="@+id/delete_task"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:src="@drawable/ic_baseline_delete_forever_24" />
 
                 <TextView
                     android:id="@+id/time"
-                    android:gravity="center"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="时间"/>
+                    android:gravity="center"
+                    android:text="时间" />
 
 
             </LinearLayout>
