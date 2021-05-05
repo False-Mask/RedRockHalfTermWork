@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="57dp"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground">
+    <TextView
+        android:id="@+id/rv_item_task_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:text="阿吧阿吧"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/Dark"
+        android:drawableLeft="@drawable/ic_baseline_event_busy_24" />
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#DFEDF8</color>
+    <color name="button_click_white">#EEEEEE</color>
+    <color name="Dark">#000000</color>
+    <color name="LineColor">#E1E1E1</color>
+    <color name="detailed_list_background_color">#5B71BC</color>
+    <color name="detailed_list_text_background_color">#FFFFFF</color>
+    <color name="main_activity_status_bar_color">#FAFAFA</color>
+    <color name="floating_action_button_color">#DFEDF8</color>
+</resources>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">RedRockHalfTermWork</string>
+    <string name="rv_item_my_day">我的一天</string>
+    <string name="rv_item_important">重要事项</string>
+    <string name="rv_item_task">我的任务</string>
+</resources>
