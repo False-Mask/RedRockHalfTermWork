@@ -15,7 +15,13 @@ data class Tasks(
 
 
     data class Task(
+        //创建时间
         var timePills:Long = 0,
-        var content:String = ""
+        //内容(也就是名称)
+        var content:String = "",
+        //日期
+        var date:String = "",
+        //时间
+        var time:String  = ""
     ):Serializable
 }

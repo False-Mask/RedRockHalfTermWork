@@ -1,6 +1,8 @@
 package com.example.redrockhalftermwork
 
 import android.app.Activity
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -16,12 +18,14 @@ import com.example.redrockhalftermwork.jetpack.Tasks
 import com.example.redrockhalftermwork.rv_create_detail.DetailedListAdapter
 import kotlinx.android.synthetic.main.activity_create_detailed_list.*
 import kotlinx.android.synthetic.main.diaglog_view.view.*
+import java.util.*
 import kotlin.concurrent.thread
 
 private const val TAG = "CreateDetailedList"
 class DetailedList : AppCompatActivity() {
     var view: View? = null
     var tasksName:String = ""
+    var detailedListAdapter:DetailedListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,11 +52,20 @@ class DetailedList : AppCompatActivity() {
         detailed_list_back_button.setOnClickListener{
             finish()
         }
+
+        create_task_floating_button.setOnClickListener {
+            sendCreateTaskDialog()
+        }
     }
 
+    private fun sendCreateTaskDialog() {
+//        wf
+    }
+
+    //初始化Activity UI
     private fun initView(intExtra: Int, booleanExtra: Boolean) {
         //判断是否要Toast
-        if (booleanExtra) toastAlertDialog()
+        if (booleanExtra) sendCreateTasksDialog()
         //获取数据库的实例
         val tasksDao = MyDataBase.getInstance(this).tasksDao()
         //分线程执行
@@ -73,13 +86,57 @@ class DetailedList : AppCompatActivity() {
         }
     }
 
+    //把任务列表刷新出来 init RecyclerView
     private fun showDetailed(list: Tasks) {
-        val detailedListAdapter = DetailedListAdapter(list)
+        detailedListAdapter = DetailedListAdapter(list)
+        initAdapterEvent()
         rv_detailed_list.adapter = detailedListAdapter
         rv_detailed_list.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
     }
 
-    private fun toastAlertDialog() {
+    private fun initAdapterEvent() {
+        detailedListAdapter?.setOnClickEvent(object : DetailedListAdapter.Listener{
+            override fun onSetDateClicked() {
+                //初始化时间参数
+                val  c = Calendar.getInstance()
+                val year: Int = c.get(Calendar.YEAR)
+                val month: Int = c.get(Calendar.MONTH)
+                val day: Int = c.get(Calendar.DAY_OF_MONTH)
+                //发送一个DatePickerDialog
+                DatePickerDialog(this@DetailedList, R.style.Theme_AppCompat_Light_Dialog_Alert,
+                    DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                        Toast.makeText(this@DetailedList, "$year-$month-$dayOfMonth", Toast.LENGTH_SHORT).show();
+                    }
+                    ,year,month,day)
+                    .show()
+            }
+
+            override fun onSetTimeClicked() {
+
+                //初始化时间参数
+                val  c = Calendar.getInstance()
+                val hourOfDay = c.get(Calendar.HOUR_OF_DAY)
+                val minutes = c.get(Calendar.MINUTE)
+
+                TimePickerDialog(this@DetailedList,R.style.Theme_AppCompat_Light_Dialog_Alert,
+                    TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                        Toast.makeText(this@DetailedList, "hourOFDay :$hourOfDay\n minute:$minute", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    ,hourOfDay,minutes,false).show()
+
+
+            }
+
+            override fun onSetNameClicked() {
+
+            }
+
+        })
+    }
+
+    //创建一个Tasks(也就是主界面上的任务集)
+    private fun sendCreateTasksDialog() {
         view = layoutInflater.inflate(R.layout.diaglog_view,null)
         val dialog = AlertDialog.Builder(this)
             .setView(view)
@@ -145,4 +202,6 @@ class DetailedList : AppCompatActivity() {
 
 
     }
+
+
 }

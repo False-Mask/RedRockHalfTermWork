@@ -7,6 +7,7 @@ import com.example.redrockhalftermwork.jetpack.Tasks
 abstract class DetailedListHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     abstract fun setBindView(
         position: Tasks,
-        position1: Int
+        position1: Int,
+        listener: DetailedListAdapter.Listener
     )
 }

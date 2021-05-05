@@ -8,6 +8,8 @@ import com.example.redrockhalftermwork.jetpack.Tasks
 
 class DetailedListAdapter(var dataList:Tasks): RecyclerView.Adapter<DetailedListHolder>() {
 
+    private lateinit var listener: Listener
+
     override fun getItemCount(): Int {
         return dataList.list.size
     }
@@ -18,12 +20,22 @@ class DetailedListAdapter(var dataList:Tasks): RecyclerView.Adapter<DetailedList
     }
 
     override fun onBindViewHolder(holder: DetailedListHolder, position: Int) {
-        holder.setBindView(dataList,position)
+        holder.setBindView(dataList,position,listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailedListHolder {
         val inflate = LayoutInflater.from(parent.context).inflate(R.layout.detailed_list_item, parent, false)
         return DetailedListHolderImp(inflate)
+    }
+
+    fun setOnClickEvent(listener: Listener){
+        this.listener = listener
+    }
+
+    interface Listener{
+        fun onSetDateClicked()
+        fun onSetTimeClicked()
+        fun onSetNameClicked()
     }
 
 }
