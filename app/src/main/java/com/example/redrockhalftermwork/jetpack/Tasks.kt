@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import org.w3c.dom.Text
 import java.io.Serializable
 
 @Entity(tableName = "tasksTable")

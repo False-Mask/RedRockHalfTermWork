@@ -1,12 +1,10 @@
 package com.example.redrockhalftermwork
 
-import android.app.Activity
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
+import android.app.*
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
@@ -49,8 +47,38 @@ class DetailedList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setStatusBarColor()
         setContentView(R.layout.activity_create_detailed_list)
+//        initActivityData()
         initView(intent.getIntExtra("position",-1),intent.getBooleanExtra("toastOrNot",false))
         initEvent()
+    }
+
+    private fun initActivityData() {
+        val isMyDay = intent.extras?.getBoolean("is_my_day") ?: false
+        if (isMyDay){
+            getMyDayData()
+            initMyDayView()
+        }else{
+            initView(intent.getIntExtra("position",-1),intent.getBooleanExtra("toastOrNot",false))
+            initEvent()
+        }
+    }
+
+    private fun initMyDayView() {
+
+    }
+
+    private fun getMyDayData() {
+        val c = Calendar.getInstance()
+        var dayStr = ""
+        c.apply {
+            dayStr = "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH)}-${c.get(Calendar.DAY_OF_YEAR)}"
+        }
+        sqlThread.launch(IO) {
+            tasksDao.getAll()
+        }
+
+
+
     }
 
     private fun setStatusBarColor() {
@@ -160,13 +188,61 @@ class DetailedList : AppCompatActivity() {
 //                if (tasks.id == 0L){
 //                    Toast.makeText(this@DetailedList, "room数据库访问异常", Toast.LENGTH_SHORT).show()
 //                }
-                Toast.makeText(this, "${tasks.id}  $tasks", Toast.LENGTH_SHORT).show()
 
                 detailedListAdapter.notifyDataSetChanged()
+
+//                createTheAlarm(task.date,task.time)
             }
             ,hourOfDay,minutes,false).show()
 
 
+    }
+
+    private fun createTheAlarm(date: String, time: String) {
+
+        val alarmManager =  getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val mIntent = Intent(this,MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(this,0,mIntent,0)
+        val c = Calendar.getInstance()
+
+
+        var hour:Int = 0
+        var minutes:Int = 0
+
+        //获取到小时和分钟数
+        val timeList = time.split(":")
+        if (timeList.size == 2){
+            hour = timeList[0].toInt()
+            minutes = timeList[1].toInt()
+        }else{
+            Toast.makeText(this, "Time格式异常", Toast.LENGTH_SHORT).show()
+        }
+
+        var year:Int = 0
+        var month:Int = 0
+        var day:Int = 0
+
+        //获取到年份和月份
+        val dateList = date.split("-")
+        if (dateList.size == 3){
+            year  = dateList[0].toInt()
+            month = dateList[1].toInt()
+            day = dateList[2].toInt()
+        }else{
+            Toast.makeText(this, "Date格式异常", Toast.LENGTH_SHORT).show()
+        }
+
+        c.apply {
+            set(Calendar.YEAR,year)
+            set(Calendar.MONTH,month)
+            set(Calendar.DAY_OF_YEAR,day)
+            set(Calendar.HOUR,hour)
+            set(Calendar.MINUTE,minutes)
+            set(Calendar.SECOND,0)
+        }
+
+        alarmManager.set(AlarmManager.RTC,c.timeInMillis,pendingIntent)
+        Toast.makeText(this, "闹钟创建成功", Toast.LENGTH_SHORT).show()
     }
 
     //初始化Activity UI

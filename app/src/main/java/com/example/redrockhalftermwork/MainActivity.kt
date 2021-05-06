@@ -12,6 +12,7 @@ import android.os.IBinder
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.redrockhalftermwork.jetpack.MainActivityLifecycleObserver
@@ -107,7 +108,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     lateinit var multiAdapter:MultiRvAdapter
-    var rvDataList = mutableListOf<ViewData>()
+    private var rvDataList = mutableListOf<ViewData>()
 
     private fun iniRecyclerView() {
         //配置viewData
@@ -131,6 +132,23 @@ class MainActivity : AppCompatActivity() {
                         startActivityForResult(mIntent,position1)
                     }
                 }
+            }
+
+            override fun myDayClicked() {
+                Toast.makeText(this@MainActivity, "MyDay", Toast.LENGTH_SHORT).show()
+                val mIntent = Intent(this@MainActivity,DetailedList::class.java)
+                mIntent.putExtra("is_my_day",true)
+//                startActivity(mIntent)
+            }
+
+            override fun importantItemClicked() {
+                Toast.makeText(this@MainActivity, "Important", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun myTasksClicked() {
+                Toast.makeText(this@MainActivity, "MyTask", Toast.LENGTH_SHORT).show()
+
             }
 
         })

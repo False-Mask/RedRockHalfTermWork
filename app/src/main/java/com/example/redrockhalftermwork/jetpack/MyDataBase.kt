@@ -23,6 +23,7 @@ abstract class MyDataBase : RoomDatabase(){
             }
             return Room.databaseBuilder(context.applicationContext,
                 MyDataBase::class.java, TASKS_DATABASE_NAME)
+                .addMigrations()
                 .fallbackToDestructiveMigration()
                 .build().apply {
                     instance=this

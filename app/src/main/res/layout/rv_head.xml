@@ -44,10 +44,9 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:clickable="true">
+        android:paddingEnd="10dp">
         <TextView
+            android:id="@+id/item_header_my_day"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -55,6 +54,27 @@
             android:textColor="@color/Dark"
             android:text="@string/rv_item_my_day"
             android:drawableStart="@drawable/ic_baseline_wb_sunny_24"
+            android:background="?android:attr/selectableItemBackground"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+        <TextView
+            android:id="@+id/item_header_import"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/Dark"
+            android:text="@string/rv_item_important"
+            android:background="?android:attr/selectableItemBackground"
+            android:drawableStart="@drawable/ic_baseline_star_border_24"
             />
     </LinearLayout>
 
@@ -65,35 +85,16 @@
         android:orientation="horizontal"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:clickable="true">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/Dark"
-            android:text="@string/rv_item_important"
-            android:drawableStart="@drawable/ic_baseline_star_border_24"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:clickable="true"
         >
         <TextView
+            android:id="@+id/item_header_my_task"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:textSize="16sp"
             android:textColor="@color/Dark"
             android:text="@string/rv_item_task"
+            android:background="?android:attr/selectableItemBackground"
             android:drawableStart="@drawable/ic_baseline_business_center_24"
             />
     </LinearLayout>
